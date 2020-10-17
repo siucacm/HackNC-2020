@@ -8,14 +8,13 @@
         "persistant": false
     },
     "oauth2": {
-        "client_id": "478509853756-d24kkgklt282khvt7md8nnuccs6aiqj4.apps.googleusercontent.com",
+        "client_id": "638563984295-bob5nek4mvka3d43iegh50sevn922tk0.apps.googleusercontent.com",
         "scopes": [
             "https://www.googleapis.com/auth/calendar",
             "https://www.googleapis.com/auth/calendar.readonly",
             "https://www.googleapis.com/auth/calendar.events",
             "email"
-          ],
-        "key": "AIzaSyBFveuFdSRuWE3tqdM6whwmljz4uHObqfU"
+          ]
     },
     "browser_action": {
         "default_popup": "popup.html",

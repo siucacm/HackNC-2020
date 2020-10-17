@@ -3,6 +3,11 @@ chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({links: []}, function() {
     console.log("The link array has been made!")
   })
+  chrome.identity.getAuthToken({interactive: true}, function(token) {
+      chrome.storage.sync.set({auth_token: token}, function() {
+          console.log("TOKEN SAVED");
+      })
+  })
 })
 
 

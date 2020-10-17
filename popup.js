@@ -51,6 +51,9 @@ const form = document.getElementById("form");
 console.log(form);
 
 form.addEventListener('submit', function(e) {
+    chrome.identity.getAuthToken({interactive: false}, function(token) {
+        console.log(token);
+    })
     e.preventDefault();
     const link = document.getElementById('text').value
     if(!link) return;
