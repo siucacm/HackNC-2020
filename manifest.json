@@ -2,7 +2,7 @@
     "name": "Meeting Manager",
     "version": "1.0",
     "description": "Manages meetings",
-    "permissions": ["storage", "identity"],
+    "permissions": ["storage", "identity", "contextMenus"],
     "background": {
         "scripts": ["background.js"],
         "persistant": false
