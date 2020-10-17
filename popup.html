@@ -11,13 +11,21 @@
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
+    <h2>Add Meeting</h2>
     <form id="form" autocomplete="off">
-        <input id="text" type="text" placeholder="Enter Link..."/>
+        <label class="box-titles" for="title" >Title</label><br>
+        <input class="box" id="title" type="text" name="title" placeholder="Enter Title..."/><br><br>
+        <label class="box-titles" for="link">Link</label><br>
+        <input class="box" id="link" type="text" name="link" placeholder="Enter Link..."/><br><br>
+        <label class="box-titles" for="datetime">Date & Time</label><br>
+        <input class="box" id="time" type="datetime-local" name="datetime" placeholder="End..."/><br><br>
+        <label class="box-titles" for="descrpt">Description</label><br>
+        <input class="box" id="description" type="text" name="descrpt" placeholder="Enter Description..."/><br><br>
+        <input class="button" type="submit" value="Add to Calendar">
     </form>
     <ul id="link-list">
 
     </ul>
-    <script src="request.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>
