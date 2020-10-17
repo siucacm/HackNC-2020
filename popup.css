@@ -1,0 +1,18 @@
+#link-list {
+    list-style-type: none;
+    padding: 0px;
+    font-size: 18px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-item-delete {
+    cursor: pointer;
+}
+
+.list-item-delete:hover {
+    color: red;
+}
