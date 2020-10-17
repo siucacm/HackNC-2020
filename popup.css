@@ -1,3 +1,23 @@
+body {
+
+}
+
+#form {
+
+}
+
+#box-titles {
+
+}
+
+.box {
+    border: 2px solid grey;
+    border-radius: 4px;
+    background-color: grey;
+    border-color: grey;
+    color: black;
+}
+
 #link-list {
     list-style-type: none;
     padding: 0px;

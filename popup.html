@@ -11,8 +11,16 @@
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
+    <h1>Add Meeting</h1>
     <form id="form" autocomplete="off">
-        <input id="text" type="text" placeholder="Enter Link..."/>
+        <p id="box-titles">Title</p>
+        <input class="box" id="text" type="text" placeholder="Enter Title..."/>
+        <p id="box-titles">Link</p>
+        <input class="box" id="text" type="text" placeholder="Enter Link..."/>
+        <p id="box-titles">Date & Time</p>
+        <input class="box" id="datetime-local" type="datetime-local" placeholder="End..."/>
+        <p id="box-titles">Description</p>
+        <input class="box" id="text" type="text" placeholder="Enter Description..."/>
     </form>
     <ul id="link-list">
 
