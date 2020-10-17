@@ -6,15 +6,14 @@ body {
 
 }
 
-#box-titles {
+.box-titles {
 
 }
 
 .box {
-    border: 2px solid grey;
+    border: 2px solid lightgray;
     border-radius: 4px;
-    background-color: grey;
-    border-color: grey;
+    background-color: lightgray;
     color: black;
 }
 
