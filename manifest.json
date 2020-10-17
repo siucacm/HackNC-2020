@@ -2,10 +2,36 @@
     "name": "Meeting Manager",
     "version": "1.0",
     "description": "Manages meetings",
-    "permission": ["storage"],
+    "permissions": ["storage", "identity"],
     "background": {
-      "scripts": ["background.js"],
-      "persistent": false
+        "scripts": ["background.js"],
+        "persistant": false
     },
+    "oauth2": {
+        "client_id": "478509853756-d24kkgklt282khvt7md8nnuccs6aiqj4.apps.googleusercontent.com",
+        "scopes": [
+            "https://www.googleapis.com/auth/calendar",
+            "https://www.googleapis.com/auth/calendar.readonly",
+            "https://www.googleapis.com/auth/calendar.events",
+            "email"
+          ],
+        "key": "AIzaSyBFveuFdSRuWE3tqdM6whwmljz4uHObqfU"
+    },
+    "page_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "images/get_started16.png",
+            "32": "images/get_started32.png",
+            "48": "images/get_started48.png",
+            "128": "images/get_started128.png"
+          }
+    },
+    "icons": {
+        "16": "images/get_started16.png",
+        "32": "images/get_started32.png",
+        "48": "images/get_started48.png",
+        "128": "images/get_started128.png"
+      },
+
     "manifest_version": 2
   }
