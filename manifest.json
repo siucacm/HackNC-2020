@@ -17,7 +17,7 @@
           ],
         "key": "AIzaSyBFveuFdSRuWE3tqdM6whwmljz4uHObqfU"
     },
-    "page_action": {
+    "browser_action": {
         "default_popup": "popup.html",
         "default_icon": {
             "16": "images/get_started16.png",

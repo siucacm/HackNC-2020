@@ -62,3 +62,19 @@ form.addEventListener('submit', function(e) {
 })
 
 
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+        console.log(request.data);
+        if (request.msg === "add_link") {
+            let link = request.data.link;
+            console.log(link);
+            if(link) {
+                linkData.push(link);
+                chrome.storage.sync.set({links:linkData}, function() {
+                    appendList(link, linkData.length-1);
+                })
+            }
+            
+        }
+    }
+);
