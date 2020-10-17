@@ -10,7 +10,6 @@ function authenticatedXhr(method, url, callback) {
         xhr.open(method, url);
         xhr.setRequestHeader('Authorization',
             'Bearer ' + access_token);
-
         xhr.onload = function () {
             if (this.status === 401 && retry) {
                 console.error("IT FAILED")
@@ -18,5 +17,17 @@ function authenticatedXhr(method, url, callback) {
             }
             callback(null, this.status, this.responseText);
         }
+
+        
+        xhr.send();
+        console.log("REQUESTING");
+
     });
 }
+
+const calendarList = 'https://www.googleapis.com/calendar/v3/calendars/'
+
+authenticatedXhr('GET', calendarList, function (err, status, body) {
+    //console.log(body);
+   
+})
