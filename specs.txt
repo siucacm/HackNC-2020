@@ -12,14 +12,18 @@ click yes → adds the link to your calendar
     ~4) add to calendar with name
     ~5) set a reminder
 
+        1) HIDE GOOGLE KEYS
+    2) error checking
    ~1) add/delete/edit meetings
     2) view meetings as list
+    2a) sort meetings list by date
     /3) view all meetings on calendar
 
     PRIORITIES FOR TODAY
     1) view calendar list (Claire, Renee)
-    2) make righty clickly deal work again (Cruiz)
+    ~2) make righty clickly deal work again (Cruiz)
     3) save password
+
 
 HOW WE DO IT
 Google chrome extension

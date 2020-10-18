@@ -1,15 +1,17 @@
 const list = document.getElementById("link-list")
 
-let linkData = [];
+let eventsData = [];
 
-chrome.storage.sync.get('links', function (result) {
-    linkData = result.links;
+chrome.storage.sync.get('events', function (result) {
+    console.log(result.events)
+    eventsData = result.events;
     makeList()
 })
 
 
 function makeList() {
-    linkData.forEach((val, index) => {
+    //console.log(eventsData)
+    eventsData.forEach((val, index) => {
         appendList(val, index)
     })
 }
@@ -23,18 +25,19 @@ function deleteFromList(link, index) {
     })
 }
 
-function appendList(link, index) {
+function appendList(event, index) {
     var li = document.createElement('li')
     var a = document.createElement('a');
     var s = document.createElement('span')
-    a.setAttribute('href', link);
+    a.setAttribute('href', event[2]);
     a.setAttribute('target', '_blank');
+    a.setAttribute('innerHTML', event[0] + event[1])
     a.classList.add('list-item-link');
-    a.appendChild(document.createTextNode(link));
+    a.appendChild(document.createTextNode(event));
 
-    s.appendChild(document.createTextNode('DELETE'));
-    s.classList.add('list-item-delete');
-    s.addEventListener('click', function () { deleteFromList(li, index) });
+    // s.appendChild(document.createTextNode('DELETE'));
+    // s.classList.add('list-item-delete');
+    // s.addEventListener('click', function () { deleteFromList(li, index) });
 
 
     li.classList.add('list-item')
@@ -71,13 +74,13 @@ form.addEventListener('submit', function (e) {
     const eventTitle = document.getElementById('title').value
     var eventStartTime = document.getElementById('startTime').value
     var eventEndTime = document.getElementById('endTime').value
-    const eventDescription = document.getElementById('description').value
+    var eventDescription = document.getElementById('description').value
     if (!eventDescription) {
         eventDescription = ''
     }
-    const eventReminder = false
+    var eventReminder = false
     if (document.getElementById('reminder').value) {
-        const eventReminder = true
+         eventReminder = true
     }
 
     var event = {
@@ -132,45 +135,7 @@ function switchDiv() {
         add.style.display = "block";
         list.style.display = "none";
     } else {
-        getEvents();
         add.style.display = "none";
         list.style.display = "block";
     }
-}
-
-function getEvents() {
-    var li = document.createElement('li')
-    var a = document.createElement('a');
-    var s = document.createElement('span')
-    a.setAttribute('href', link);
-    a.setAttribute('target', '_blank');
-    a.classList.add('list-item-link');
-}
-
-// function makeList() {
-//     linkData.forEach((val, index) => {
-//         appendList(val, index)
-//     })
-// }
-
-function appendList(link, index) {
-    var li = document.createElement('li')
-    var a = document.createElement('a');
-    var s = document.createElement('span')
-    a.setAttribute('href', link);
-    a.setAttribute('target', '_blank');
-    a.classList.add('list-item-link');
-    a.appendChild(document.createTextNode(link));
-
-    s.appendChild(document.createTextNode('DELETE'));
-    s.classList.add('list-item-delete');
-    s.addEventListener('click', function () { deleteFromList(li, index) });
-
-
-    li.classList.add('list-item')
-    li.appendChild(a);
-    li.appendChild(s);
-
-    list.appendChild(li);
-
 }
