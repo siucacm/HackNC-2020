@@ -50,20 +50,56 @@ const form = document.getElementById("form");
 
 console.log(form);
 
+// form.addEventListener('submit', function(e) {
+//     // chrome.identity.getAuthToken({interactive: false}, function(token) {
+//     //     console.log(token);
+//     // })
+//     e.preventDefault();
+//     const link = document.getElementById('link').value
+//     if(!link) return;
+//     linkData.push(link);
+//     // chrome.storage.sync.set({links:linkData}, function() {
+//     //     appendList(link, linkData.length-1);
+//     //     document.getElementById('text').value = '';
+//     // })
+// })
+
 form.addEventListener('submit', function(e) {
     chrome.identity.getAuthToken({interactive: false}, function(token) {
         console.log(token);
     })
     e.preventDefault();
-    const link = document.getElementById('text').value
-    if(!link) return;
-    linkData.push(link);
-    chrome.storage.sync.set({links:linkData}, function() {
-        appendList(link, linkData.length-1);
-        document.getElementById('text').value = '';
-    })
-})
 
+    const link = document.getElementById('link').value
+    if(!link) return;
+    const eventTitle = document.getElementById('title').value
+    const eventTime = document.getElementById('time').value
+    const eventDescription = document.getElementById('description').value
+    if (!eventDescription) {
+        eventDescription = ''
+    }
+    const eventReminder = false
+    if (document.getElementById('reminder').value) {
+        const eventReminder = true
+    }
+
+    var event = {
+        'summary': eventTitle,
+        'location': link,
+        'description': eventDescription,
+        'start': {
+            'dateTime': eventTime,
+        },
+        'end': {
+            'dateTime': '2015-05-28T17:00:00-07:00',
+        },
+        'reminders': {
+            'useDefault': eventReminder
+        }
+    };
+    
+    //ADD_EVENT(event);
+});
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
