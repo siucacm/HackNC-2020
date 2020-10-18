@@ -28,6 +28,18 @@ const addCalendar = 'https://www.googleapis.com/calendar/v3/calendars'
 
 const addEvent = 'https://www.googleapis.com/calendar/v3/calendars/'
 
+function createCalendar() {
+    gapi.client.request({
+        path: addCalendar,
+        method: 'POST',
+        body: {
+            summary: 'OMM_MEETING_CAL'
+        }
+    }).then(function (response) {
+        chrome.storage.sync.set({ calendarID: response.result.id })
+    })
+}
+
 function start() {
     chrome.identity.getAuthToken({ interactive: true }, function (token) {
         gapi.client.init({ gapiInitData }).then(function () {
@@ -36,21 +48,31 @@ function start() {
             })
 
             return gapi.client.request({
-                path: addCalendar,
-                method: 'POST',
-                body: {
-                    summary: 'OMM_MEETING_CAL'
-                }
+                path: calenderList,
+                method: 'GET'
             })
         }).then(function (response) {
-            chrome.storage.sync.set({ calendarID: response.result.id })
+            
+            let cals = response.result.items;
+            for(let i = 0; i < cals.length; i++) {
+                if(cals[i].summary == 'OMM_MEETING_CAL') {
+                    // TODO: cal id only gets set on install so if the cal were to be deleted whole thing would need to be reinstalled
+                    chrome.storage.sync.set({calendarID: cals[i].id}); 
+                    return;
+                }
+            }
+            console.log(cals);
+            createCalendar();
         })
     })
 }
 
 
 function addLink(info, tab) {
-    var views = chrome.extension.getViews({ type: "popup" });
+    
+    chrome.tabs.create({url:`addLink.html?link=${info.selectionText}`});
+    
+    /*var views = chrome.extension.getViews({ type: "popup" });
     if (views.length > 0) {
         console.log(views);
         console.log("Word " + info.selectionText + " was clicked.");
@@ -67,7 +89,7 @@ function addLink(info, tab) {
                 console.log("Updated Links");
             })
         })
-    }
+    }*/
 
 }
 chrome.contextMenus.create({
