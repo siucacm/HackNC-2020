@@ -2,19 +2,39 @@ body {
 
 }
 
-#form {
+.button {
+  border: 8px solid cornflowerblue;
+  background-color: cornflowerblue;
+  border-radius: 4px;
+  color: white;
+}
 
+#header{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    color: cornflowerblue;
+    margin: 0px; 0px;
+}
+
+input {
+    margin-bottom: 5px;
 }
 
 .box-titles {
-
+    font-family: 'Open Sans', sans-serif;
+    font-size: small;
 }
 
 .box {
-    border: 2px solid lightgray;
+    border: 8px solid lightgray;
     border-radius: 4px;
     background-color: lightgray;
     color: black;
+    width: 200px;
+}
+
+#reminder {
+    width: 50px;
 }
 
 #link-list {

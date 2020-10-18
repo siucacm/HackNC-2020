@@ -77,9 +77,9 @@ form.addEventListener('submit', function (e) {
         eventDescription = ''
     }
     const eventReminder = false
-    // if (document.getElementById('reminder').value) {
-    //     const eventReminder = true
-    // }
+    if (document.getElementById('reminder').value) {
+        const eventReminder = true
+    }
 
     var event = {
         'summary': eventTitle,
