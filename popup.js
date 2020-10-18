@@ -132,7 +132,45 @@ function switchDiv() {
         add.style.display = "block";
         list.style.display = "none";
     } else {
+        getEvents();
         add.style.display = "none";
         list.style.display = "block";
     }
+}
+
+function getEvents() {
+    var li = document.createElement('li')
+    var a = document.createElement('a');
+    var s = document.createElement('span')
+    a.setAttribute('href', link);
+    a.setAttribute('target', '_blank');
+    a.classList.add('list-item-link');
+}
+
+// function makeList() {
+//     linkData.forEach((val, index) => {
+//         appendList(val, index)
+//     })
+// }
+
+function appendList(link, index) {
+    var li = document.createElement('li')
+    var a = document.createElement('a');
+    var s = document.createElement('span')
+    a.setAttribute('href', link);
+    a.setAttribute('target', '_blank');
+    a.classList.add('list-item-link');
+    a.appendChild(document.createTextNode(link));
+
+    s.appendChild(document.createTextNode('DELETE'));
+    s.classList.add('list-item-delete');
+    s.addEventListener('click', function () { deleteFromList(li, index) });
+
+
+    li.classList.add('list-item')
+    li.appendChild(a);
+    li.appendChild(s);
+
+    list.appendChild(li);
+
 }
