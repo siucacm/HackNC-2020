@@ -96,16 +96,26 @@ function addLink(info, tab) {
     */
 
 
-function addEvents(allEvents) {
-    chrome.storage.sync.get('events', function (result) {
-        let ourEvents = result.events
-        console.log(allEvents)
-        for (var i = 0; i < allEvents.length; i++) {
-            ourEvents.push([allEvents[i].summary, allEvents[i].start.dateTime, allEvents[i].location])
-        }
+// function addEvents(allEvents) {
+//     chrome.storage.sync.get('events', function (result) {
+//         let ourEvents = result.events
+//         console.log(allEvents)
+//         for (var i = 0; i < allEvents.length; i++) {
+//             ourEvents.push([allEvents[i].summary, allEvents[i].start.dateTime, allEvents[i].location])
+//         }
 
-        chrome.storage.sync.set({events: ourEvents})
-    })
+//         chrome.storage.sync.set({events: ourEvents})
+//     })
+// }
+
+//inefficient fix
+function addEvents(allEvents){
+    let ourEvents = []
+    for (var i = 0; i < allEvents.length; i++) {
+        ourEvents.push([allEvents[i].summary, allEvents[i].start.dateTime, allEvents[i].location])
+    }
+    chrome.storage.sync.set({events: ourEvents})
+
 }
 
 function getEvents() {
@@ -116,9 +126,10 @@ function getEvents() {
             path: linkEvents + ourCalendar + "/events",
             method: 'GET',
             body: {
-                calendarID: ourCalendar
+                calendarID: ourCalendar,
             }
         }).then(function (response) {
+            console.log(response);
             addEvents(response.result.items)
         })
     });
