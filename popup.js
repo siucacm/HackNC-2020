@@ -135,6 +135,7 @@ function switchDiv() {
         add.style.display = "block";
         list.style.display = "none";
     } else {
+        getEvents();
         add.style.display = "none";
         list.style.display = "block";
     }
