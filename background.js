@@ -54,7 +54,6 @@ function start() {
         }).then(function (response) {
             
             let cals = response.result.items;
-            console.log(cals)
             for(let i = 0; i < cals.length; i++) {
                 if(cals[i].summary == 'OMM_MEETING_CAL') {
                     // TODO: cal id only gets set on install so if the cal were to be deleted whole thing would need to be reinstalled
@@ -70,7 +69,10 @@ function start() {
 
 
 function addLink(info, tab) {
-    var views = chrome.extension.getViews({ type: "popup" });
+    
+    chrome.tabs.create({url:`addLink.html?link=${info.selectionText}`});
+    
+    /*var views = chrome.extension.getViews({ type: "popup" });
     if (views.length > 0) {
         console.log(views);
         console.log("Word " + info.selectionText + " was clicked.");
@@ -87,7 +89,7 @@ function addLink(info, tab) {
                 console.log("Updated Links");
             })
         })
-    }
+    }*/
 
 }
 chrome.contextMenus.create({
