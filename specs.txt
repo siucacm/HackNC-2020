@@ -14,6 +14,7 @@ click yes → adds the link to your calendar
 
    ~1) add/delete/edit meetings
     2) view meetings as list
+    2a) sort meetings list by date
     /3) view all meetings on calendar
 
     PRIORITIES FOR TODAY

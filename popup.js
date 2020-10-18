@@ -74,13 +74,13 @@ form.addEventListener('submit', function (e) {
     const eventTitle = document.getElementById('title').value
     var eventStartTime = document.getElementById('startTime').value
     var eventEndTime = document.getElementById('endTime').value
-    const eventDescription = document.getElementById('description').value
+    var eventDescription = document.getElementById('description').value
     if (!eventDescription) {
         eventDescription = ''
     }
-    const eventReminder = false
+    var eventReminder = false
     if (document.getElementById('reminder').value) {
-        const eventReminder = true
+         eventReminder = true
     }
 
     var event = {
@@ -135,7 +135,6 @@ function switchDiv() {
         add.style.display = "block";
         list.style.display = "none";
     } else {
-        getEvents();
         add.style.display = "none";
         list.style.display = "block";
     }

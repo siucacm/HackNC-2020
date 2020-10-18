@@ -102,7 +102,7 @@ function addEvents(allEvents) {
         let ourEvents = result.events
         console.log(allEvents)
         for (var i = 0; i < allEvents.length; i++) {
-            ourEvents.push([allEvents[i].summary, allEvents[i].start.dateTime, allEvents[i].description])
+            ourEvents.push([allEvents[i].summary, allEvents[i].start.dateTime, allEvents[i].location])
         }
 
         chrome.storage.sync.set({events: ourEvents})
@@ -165,6 +165,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                 }
             }).then(function (response) {
                 console.log(response)
+                getEvents();
             })
         });
     }
