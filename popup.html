@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
-      button {
-        height: 30px;
-        width: 30px;
-        outline: none;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <form id="form" autocomplete="off">
-        <input id="text" type="text" placeholder="Enter Link..."/>
-    </form>
-    <ul id="link-list">
+    <div id="add-meeting">
+      <div style="width: 65%; height: 30px; float: left;">
+        <h2 class="header">Add Meeting</h2>
+      </div>
+      <div style="width: 35%; height: 30px; float: left;">
+        <button class="button" id="switchbtn1" type="button">See All</button>
+      </div>
+      <form id="form" autocomplete="off">
+          <label class="box-titles" for="title" >Title</label><br>
+          <input class="box" id="title" type="text" name="title" placeholder="Enter Title..."/><br>
+          <label class="box-titles" for="link">Link</label><br>
+          <input class="box" id="link" type="text" name="link" placeholder="Enter Link..."/><br>
+          <label class="box-titles" for="datetime"> Start Date & Time</label><br>
+          <input class="box" id="startTime" type="datetime-local" name="datetime" placeholder="End..."/><br>
+          <label class="box-titles" for="datetime">End Date & Time</label><br>
+          <input class="box" id="endTime" type="datetime-local" name="datetime" placeholder="End..."/><br>
+          <label class="box-titles" for="descrpt">Description</label><br>
+          <input class="box" id="description" type="text" name="descrpt" placeholder="Enter Description..."/><br>
+          <label class="box-titles" for="reminder">Set Reminder</label>
+          <input id="reminder" type="checkbox" name="reminder" value="true"/><br>
+          <input class="button" type="submit" value="Add to Calendar">
+      </form>
+    </div>
+    <div id="list-meeting" style="display: none;">
+      <div style="width: 60%; height: 30px; float: left;">
+        <h2 class="header">All Meetings</h2>
+      </div>
+      <div style="width: 40%; height: 30px; float: left;">
+        <button class="button" id="switchbtn2" type="button">Add New</button>
+      </div>
+      <ul id="link-list">
 
-    </ul>
+      </ul>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>

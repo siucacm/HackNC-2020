@@ -9,12 +9,17 @@ click yes → adds the link to your calendar
     1) get date from page if possible, prompt for date if not
     2) check whether link has password; allow to save if not
     3) set recurruance/expiration date
-    4) add to calendar with name
-    5) set a reminder
+    ~4) add to calendar with name
+    ~5) set a reminder
 
-    1) add/delete/edit meetings
+   ~1) add/delete/edit meetings
     2) view meetings as list
-    3) view all meetings on calendar
+    /3) view all meetings on calendar
+
+    PRIORITIES FOR TODAY
+    1) view calendar list (Claire, Renee)
+    2) make righty clickly deal work again (Cruiz)
+    3) save password
 
 HOW WE DO IT
 Google chrome extension
