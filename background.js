@@ -24,7 +24,6 @@ const gapiInitData = {
 }
 
 function start() {
-
     chrome.identity.getAuthToken({ interactive: true }, function (token) {
         gapi.client.init({ gapiInitData }).then(function () {
             gapi.auth.setToken({
