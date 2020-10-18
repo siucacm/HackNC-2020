@@ -71,7 +71,7 @@ form.addEventListener('submit', function (e) {
     if (!link) return;
     const eventTitle = document.getElementById('title').value
     var eventStartTime = document.getElementById('startTime').value
-    var eventStartTime = document.getElementById('endTime').value
+    var eventEndTime = document.getElementById('endTime').value
     const eventDescription = document.getElementById('description').value
     if (!eventDescription) {
         eventDescription = ''
