@@ -26,10 +26,8 @@ const calenderList = 'https://www.googleapis.com/calendar/v3/users/me/calendarLi
 
 const addCalendar = 'https://www.googleapis.com/calendar/v3/calendars'
 
-const addEvent = 'https://www.googleapis.com/calendar/v3/calendars/'
+const linkEvents = 'https://www.googleapis.com/calendar/v3/calendars/'
 
-
-const eventList = 'https://www.googleapis.com/calendar/v3/calendars/'
 
 function createCalendar() {
     gapi.client.request({
@@ -60,11 +58,11 @@ function start() {
             for(let i = 0; i < cals.length; i++) {
                 if(cals[i].summary == 'OMM_MEETING_CAL') {
                     // TODO: cal id only gets set on install so if the cal were to be deleted whole thing would need to be reinstalled
-                    chrome.storage.sync.set({calendarID: cals[i].id}); 
+                    chrome.storage.sync.set({calendarID: cals[i].id});
+                    getEvents(); 
                     return;
                 }
             }
-            //console.log(cals);
             createCalendar();
         })
         getEvents();
@@ -75,6 +73,7 @@ function start() {
 function addLink(info, tab) {
     
     chrome.tabs.create({url:`addLink.html?link=${info.selectionText}`});
+}
     
     /*var views = chrome.extension.getViews({ type: "popup" });
     if (views.length > 0) {
@@ -95,7 +94,7 @@ function addLink(info, tab) {
         })
     }
     */
-}
+
 
 function addEvents(allEvents) {
     chrome.storage.sync.get('events', function (result) {
@@ -114,15 +113,13 @@ function getEvents() {
         let ourCalendar = result.calendarID;
 
         return gapi.client.request({
-            path: eventList + ourCalendar + "/events",
+            path: linkEvents + ourCalendar + "/events",
             method: 'GET',
             body: {
                 calendarID: ourCalendar
             }
         }).then(function (response) {
             addEvents(response.result.items)
-            // console.log(response.result.items)
-            //chrome.storage.sync.set({ events: [response.result.items.summary, response.result.items.timeZone, response.result.items.description]})
         })
     });
 }
@@ -141,19 +138,16 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         let event = request.data.event
         chrome.storage.sync.get('calendarID', function (result) {
             let calendarID = result.calendarID;
-            //console.log(calendarID.type)
 
             gapi.client.request({
-                path: addEvent + calendarID + "/events",
+                path: linkEvents + calendarID + "/events",
                 method: 'POST',
                 body: {
                     start: {
                         dateTime: event.start.dateTime
-                        // timeZone: event.start.timeZone
                     },
                     end: {
                         dateTime: event.end.dateTime
-                        // timeZone: event.end.timeZone
                     },
 
                     description: event.description,
