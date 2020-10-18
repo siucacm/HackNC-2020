@@ -19,12 +19,14 @@ chrome.runtime.onInstalled.addListener(function () {
 const gapiInitData = {
     apiKey: 'AIzaSyDxpca03rBRSddS8HoGPYaP_eQqKRL5PNA',
     clientId: manifest.oauth2.client_id,
-    scope: 'https://www.googleapis.com/auth/calendar'
+    scope: 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events'
 }
 
 const calenderList = 'https://www.googleapis.com/calendar/v3/users/me/calendarList'
 
 const addCalendar = 'https://www.googleapis.com/calendar/v3/calendars'
+
+const addEvent = 'https://www.googleapis.com/calendar/v3/calendars/'
 
 function start() {
     chrome.identity.getAuthToken({ interactive: true }, function (token) {
@@ -41,7 +43,7 @@ function start() {
                 }
             })
         }).then(function (response) {
-            console.log(response);
+            chrome.storage.sync.set({ calendarID: response.result.id })
         })
     })
 }
@@ -76,7 +78,33 @@ chrome.contextMenus.create({
 
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.msg == 'calender_list') {
+    if (request.msg == 'add_event') {
 
+        let event = request.data.event
+        chrome.storage.sync.get('calendarID', function (result) {
+            let calendarID = result.calendarID;
+
+            gapi.client.request({
+                path: addEvent + calendarID + "/events",
+                method: 'POST',
+                body: {
+                    start: {
+                        dateTime: event.start
+                    },
+                    end: {
+                        dateTime: new Date().toLocaleString()
+                    },
+
+                    description: event.description,
+                    location: event.location,
+                    summary: event.summary,
+                    reminders: {
+                        useDefault: event.reminders
+                    }
+                }
+            }).then(function (response) {
+                console.log(response)
+            })
+        });
     }
 });

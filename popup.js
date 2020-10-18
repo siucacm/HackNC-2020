@@ -3,7 +3,7 @@ const list = document.getElementById("link-list")
 let linkData = [];
 
 chrome.storage.sync.get('links', function (result) {
-    console.log(result);
+    //console.log(result);
     linkData = result.links;
     makeList()
 })
@@ -48,7 +48,7 @@ function appendList(link, index) {
 
 const form = document.getElementById("form");
 
-console.log(form);
+//console.log(form);
 
 // form.addEventListener('submit', function(e) {
 //     // chrome.identity.getAuthToken({interactive: false}, function(token) {
@@ -65,9 +65,6 @@ console.log(form);
 // })
 
 form.addEventListener('submit', function (e) {
-    chrome.identity.getAuthToken({ interactive: false }, function (token) {
-        console.log(token);
-    })
     e.preventDefault();
 
     const link = document.getElementById('link').value
@@ -79,9 +76,9 @@ form.addEventListener('submit', function (e) {
         eventDescription = ''
     }
     const eventReminder = false
-    if (document.getElementById('reminder').value) {
-        const eventReminder = true
-    }
+    // if (document.getElementById('reminder').value) {
+    //     const eventReminder = true
+    // }
 
     var event = {
         'summary': eventTitle,
@@ -90,9 +87,9 @@ form.addEventListener('submit', function (e) {
         'start': {
             'dateTime': eventTime,
         },
-        'end': {
-            'dateTime': '2015-05-28T17:00:00-07:00',
-        },
+        // 'end': {
+        //     'dateTime': '2015-05-28T17:00:00-07:00',
+        // },
         'reminders': {
             'useDefault': eventReminder
         }
@@ -101,7 +98,6 @@ form.addEventListener('submit', function (e) {
         msg: 'add_event',
         data: { event }
     })
-    //ADD_EVENT(event);
 });
 
 chrome.runtime.onMessage.addListener(
