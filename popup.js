@@ -3,7 +3,6 @@ const list = document.getElementById("link-list")
 let linkData = [];
 
 chrome.storage.sync.get('links', function (result) {
-    //console.log(result);
     linkData = result.links;
     makeList()
 })
@@ -99,7 +98,6 @@ form.addEventListener('submit', function (e) {
             'useDefault': eventReminder
         }
     }
-
     chrome.runtime.sendMessage({
         msg: 'add_event',
         data: { event }
@@ -122,3 +120,19 @@ chrome.runtime.onMessage.addListener(
         }
     }
 );
+
+document.getElementById("switchbtn1").addEventListener("click", switchDiv);
+document.getElementById("switchbtn2").addEventListener("click", switchDiv);
+
+function switchDiv() {
+    console.log("divs were switched!");
+    var add = document.getElementById("add-meeting");
+    var list = document.getElementById("list-meeting");
+    if(add.style.display == "none") {
+        add.style.display = "block";
+        list.style.display = "none";
+    } else {
+        add.style.display = "none";
+        list.style.display = "block";
+    }
+}
