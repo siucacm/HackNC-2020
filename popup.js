@@ -107,6 +107,7 @@ form.addEventListener('submit', function (e) {
         msg: 'add_event',
         data: { event }
     })
+    window.close();
 });
 
 chrome.runtime.onMessage.addListener(
