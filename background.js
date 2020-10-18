@@ -3,8 +3,8 @@ const manifest = chrome.runtime.getManifest()
 
 
 chrome.runtime.onInstalled.addListener(function () {
-    chrome.storage.sync.set({ links: [] }, function () {
-        console.log("The link array has been made!")
+    chrome.storage.sync.set({ events: [] }, function () {
+        console.log("The event array has been made!")
     })
     chrome.identity.getAuthToken({ interactive: true }, function (token) {
         chrome.storage.sync.set({ auth_token: token }, function () {
@@ -29,7 +29,7 @@ const addCalendar = 'https://www.googleapis.com/calendar/v3/calendars'
 const addEvent = 'https://www.googleapis.com/calendar/v3/calendars/'
 
 
-const eventList = 'https://www.googleapis.com/calendar/v3/calendars/calendarId/events'
+const eventList = 'https://www.googleapis.com/calendar/v3/calendars/'
 
 function createCalendar() {
     gapi.client.request({
@@ -64,9 +64,10 @@ function start() {
                     return;
                 }
             }
-            console.log(cals);
+            //console.log(cals);
             createCalendar();
         })
+        getEvents();
     })
 }
 
@@ -93,25 +94,39 @@ function addLink(info, tab) {
             })
         })
     }
+    */
 }
 
-function addEventList() {
+function addEvents(allEvents) {
+    chrome.storage.sync.get('events', function (result) {
+        let ourEvents = result.events
+        console.log(allEvents)
+        for (var i = 0; i < allEvents.length; i++) {
+            ourEvents.push([allEvents[i].summary, allEvents[i].start.dateTime, allEvents[i].description])
+        }
+
+        chrome.storage.sync.set({events: ourEvents})
+    })
+}
+
+function getEvents() {
     chrome.storage.sync.get('calendarID', function (result) {
         let ourCalendar = result.calendarID;
-    }*/
-
 
         return gapi.client.request({
-            path: eventList,
+            path: eventList + ourCalendar + "/events",
             method: 'GET',
             body: {
                 calendarID: ourCalendar
             }
         }).then(function (response) {
-            chrome.storage.sync.set({ events: response.result.summary + response.result.timeZone + response.result.description})
+            addEvents(response.result.items)
+            // console.log(response.result.items)
+            //chrome.storage.sync.set({ events: [response.result.items.summary, response.result.items.timeZone, response.result.items.description]})
         })
     });
 }
+
 
 chrome.contextMenus.create({
     title: "Add To OMM: %s",
