@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+      button {
+        height: 30px;
+        width: 30px;
+        outline: none;
+      }
+    </style>
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <h2 id="header">Add Meeting</h2>
+    <h2>Add Meeting</h2>
     <form id="form" autocomplete="off">
         <label class="box-titles" for="title" >Title</label><br>
-        <input class="box" id="title" type="text" name="title" placeholder="Enter Title..."/><br>
+        <input class="box" id="title" type="text" name="title" placeholder="Enter Title..."/><br><br>
         <label class="box-titles" for="link">Link</label><br>
-        <input class="box" id="link" type="text" name="link" placeholder="Enter Link..."/><br>
+        <input class="box" id="link" type="text" name="link" placeholder="Enter Link..."/><br><br>
         <label class="box-titles" for="datetime">Date & Time</label><br>
-        <input class="box" id="time" type="datetime-local" name="datetime" placeholder="End..."/><br>
+        <input class="box" id="time" type="datetime-local" name="datetime" placeholder="End..."/><br><br>
         <label class="box-titles" for="descrpt">Description</label><br>
-        <input class="box" id="description" type="text" name="descrpt" placeholder="Enter Description..."/><br>
-        <label class="box-titles" for="reminder">Set Reminder</label>
-        <input class="box" id="reminder" type="checkbox" name="reminder" value="true"/></br>
+        <input class="box" id="description" type="text" name="descrpt" placeholder="Enter Description..."/><br><br>
         <input class="button" type="submit" value="Add to Calendar">
     </form>
     <ul id="link-list">

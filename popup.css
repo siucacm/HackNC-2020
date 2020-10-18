@@ -13,7 +13,8 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     color: cornflowerblue;
-    margin: 0px; 0px;
+    margin-top: 0px;
+    margin-bottom: 2px;
 }
 
 input {
@@ -26,15 +27,16 @@ input {
 }
 
 .box {
-    border: 8px solid lightgray;
+    border: 8px solid #ECEEED;
     border-radius: 4px;
-    background-color: lightgray;
+    background-color: #ECEEED;
     color: black;
     width: 200px;
 }
 
 #reminder {
     width: 50px;
+    margin-bottom: 10px;
 }
 
 #link-list {
