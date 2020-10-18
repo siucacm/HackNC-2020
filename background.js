@@ -83,16 +83,19 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         let event = request.data.event
         chrome.storage.sync.get('calendarID', function (result) {
             let calendarID = result.calendarID;
+            //console.log(calendarID.type)
 
             gapi.client.request({
                 path: addEvent + calendarID + "/events",
                 method: 'POST',
                 body: {
                     start: {
-                        dateTime: event.start
+                        dateTime: event.start.dateTime
+                        // timeZone: event.start.timeZone
                     },
                     end: {
-                        dateTime: new Date().toLocaleString()
+                        dateTime: event.end.dateTime
+                        // timeZone: event.end.timeZone
                     },
 
                     description: event.description,
