@@ -3,7 +3,6 @@ const list = document.getElementById("link-list")
 let linkData = [];
 
 chrome.storage.sync.get('links', function (result) {
-    console.log(result);
     linkData = result.links;
     makeList()
 })
@@ -48,7 +47,7 @@ function appendList(link, index) {
 
 const form = document.getElementById("form");
 
-console.log(form);
+//console.log(form);
 
 // form.addEventListener('submit', function(e) {
 //     // chrome.identity.getAuthToken({interactive: false}, function(token) {
@@ -65,15 +64,13 @@ console.log(form);
 // })
 
 form.addEventListener('submit', function (e) {
-    chrome.identity.getAuthToken({ interactive: false }, function (token) {
-        console.log(token);
-    })
     e.preventDefault();
 
     const link = document.getElementById('link').value
     if (!link) return;
     const eventTitle = document.getElementById('title').value
-    const eventTime = document.getElementById('time').value
+    var eventStartTime = document.getElementById('startTime').value
+    var eventEndTime = document.getElementById('endTime').value
     const eventDescription = document.getElementById('description').value
     if (!eventDescription) {
         eventDescription = ''
@@ -88,20 +85,23 @@ form.addEventListener('submit', function (e) {
         'location': link,
         'description': eventDescription,
         'start': {
-            'dateTime': eventTime,
-        },
-        'end': {
-            'dateTime': '2015-05-28T17:00:00-07:00',
-        },
+            'dateTime': eventStartTime + ':00-0500',
+            // 'timeZone': 'America/Chicago'
+          },
+        
+          'end': {
+            'dateTime': eventEndTime + ':00-0500'
+            // 'timeZone': 'America/Chicago'
+          },
+        
         'reminders': {
             'useDefault': eventReminder
         }
-    };
+    }
     chrome.runtime.sendMessage({
         msg: 'add_event',
         data: { event }
     })
-    //ADD_EVENT(event);
 });
 
 chrome.runtime.onMessage.addListener(
