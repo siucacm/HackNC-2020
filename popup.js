@@ -30,8 +30,10 @@ function appendList(event, index) {
     var a = document.createElement('a');
     var s = document.createElement('span')
     a.setAttribute('href', event[2]);
+    console.log(event[2])
     a.setAttribute('target', '_blank');
-    a.setAttribute('innerHTML', event[0] + event[1])
+    event.pop();
+    // a.setAttribute('innerHTML', event[0] + event[1])
     a.classList.add('list-item-link');
     a.appendChild(document.createTextNode(event));
 
