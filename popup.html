@@ -13,19 +13,19 @@
         <button class="button" id="switchbtn1" type="button">See All</button>
       </div>
       <form id="form" autocomplete="off">
-          <label class="box-titles" for="title" >Title</label><br>
-          <input class="box" id="title" type="text" name="title" placeholder="Enter Title..."/><br>
-          <label class="box-titles" for="link">Link</label><br>
-          <input class="box" id="link" type="text" name="link" placeholder="Enter Link..."/><br>
-          <label class="box-titles" for="datetime"> Start Date & Time</label><br>
-          <input class="box" id="startTime" type="datetime-local" name="datetime" placeholder="End..."/><br>
-          <label class="box-titles" for="datetime">End Date & Time</label><br>
-          <input class="box" id="endTime" type="datetime-local" name="datetime" placeholder="End..."/><br>
-          <label class="box-titles" for="descrpt">Description</label><br>
-          <input class="box" id="description" type="text" name="descrpt" placeholder="Enter Description..."/><br>
-          <label class="box-titles" for="reminder">Set Reminder</label>
-          <input id="reminder" type="checkbox" name="reminder" value="true"/><br>
-          <input class="button" type="submit" value="Add to Calendar">
+        <label class="box-titles" for="title" >Title</label><br>
+        <input class="box" id="title" type="text" name="title" placeholder="Enter Title..." required/><br>
+        <label class="box-titles" for="link">Link</label><br>
+        <input class="box" id="link" type="text" name="link" placeholder="Enter Link..." required/><br>
+        <label class="box-titles" for="datetime"> Start Date & Time</label><br>
+        <input class="box" id="startTime" type="datetime-local" name="datetime" placeholder="End..." required/><br>
+        <label class="box-titles" for="datetime">End Date & Time</label><br>
+        <input class="box" id="endTime" type="datetime-local" name="datetime" placeholder="End..." required/><br>
+        <label class="box-titles" for="descrpt">Description</label><br>
+        <input class="box" id="description" type="text" name="descrpt" placeholder="Enter Description..."/><br>
+        <label class="box-titles" for="reminder">Set Reminder</label>
+        <input id="reminder" type="checkbox" name="reminder" value="true"/><br>
+        <input class="button" type="submit" value="Add to Calendar">
       </form>
     </div>
     <div id="list-meeting" style="display: none; width: 220px;">
