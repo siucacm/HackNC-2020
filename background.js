@@ -28,6 +28,9 @@ const addCalendar = 'https://www.googleapis.com/calendar/v3/calendars'
 
 const addEvent = 'https://www.googleapis.com/calendar/v3/calendars/'
 
+
+const eventList = 'https://www.googleapis.com/calendar/v3/calendars/calendarId/events'
+
 function createCalendar() {
     gapi.client.request({
         path: addCalendar,
@@ -89,9 +92,27 @@ function addLink(info, tab) {
                 console.log("Updated Links");
             })
         })
+    }
+}
+
+function addEventList() {
+    chrome.storage.sync.get('calendarID', function (result) {
+        let ourCalendar = result.calendarID;
     }*/
 
+
+        return gapi.client.request({
+            path: eventList,
+            method: 'GET',
+            body: {
+                calendarID: ourCalendar
+            }
+        }).then(function (response) {
+            chrome.storage.sync.set({ events: response.result.summary + response.result.timeZone + response.result.description})
+        })
+    });
 }
+
 chrome.contextMenus.create({
     title: "Add To OMM: %s",
     contexts: ["selection"],
