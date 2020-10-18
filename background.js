@@ -15,13 +15,16 @@ chrome.runtime.onInstalled.addListener(function () {
     gapi.load('client', start)
 })
 
-const calenderList = 'https://www.googleapis.com/calendar/v3/users/me/calendarList'
 
 const gapiInitData = {
     apiKey: 'AIzaSyDxpca03rBRSddS8HoGPYaP_eQqKRL5PNA',
     clientId: manifest.oauth2.client_id,
-    scope: 'https://www.googleapis.com/auth/calendar.readonly'
+    scope: 'https://www.googleapis.com/auth/calendar'
 }
+
+const calenderList = 'https://www.googleapis.com/calendar/v3/users/me/calendarList'
+
+const addCalendar = 'https://www.googleapis.com/calendar/v3/calendars'
 
 function start() {
     chrome.identity.getAuthToken({ interactive: true }, function (token) {
@@ -31,13 +34,16 @@ function start() {
             })
 
             return gapi.client.request({
-                'path': calenderList
+                path: addCalendar,
+                method: 'POST',
+                body: {
+                    summary: 'OMM_MEETING_CAL'
+                }
             })
         }).then(function (response) {
             console.log(response);
         })
     })
-    
 }
 
 
@@ -68,8 +74,9 @@ chrome.contextMenus.create({
     onclick: addLink
 });
 
+
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.type == 'calender_list') {
+    if (request.msg == 'calender_list') {
 
     }
 });
