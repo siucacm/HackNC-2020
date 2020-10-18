@@ -1,3 +1,5 @@
+const oauth = chrome.runtime.getManifest().oauth2
+
 function authenticatedXhr(method, url, callback) {
     var retry = true;
     chrome.identity.getAuthToken({ interactive: false }, function (access_token) {
@@ -25,9 +27,9 @@ function authenticatedXhr(method, url, callback) {
     });
 }
 
-const calendarList = 'https://www.googleapis.com/calendar/v3/calendars/'
+const calendarList = 'https://www.googleapis.com/calendar/v3/calendars/?key=AIzaSyDxpca03rBRSddS8HoGPYaP_eQqKRL5PNA'
 
 authenticatedXhr('GET', calendarList, function (err, status, body) {
-    //console.log(body);
+    console.log(body);
    
 })
