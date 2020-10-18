@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div id="add-meeting" style="display: flex; justify-content: center;">
+      <form id="form" autocomplete="off">
+          <h2 class="header">Add Meeting</h2>
+          <label class="box-titles" for="title" >Title</label><br>
+          <input class="box" id="title" type="text" name="title" placeholder="Enter Title..."/><br>
+          <label class="box-titles" for="link">Link</label><br>
+          <input class="box" id="link" type="text" name="link" placeholder="Enter Link..."/><br>
+          <label class="box-titles" for="datetime"> Start Date & Time</label><br>
+          <input class="box" id="startTime" type="datetime-local" name="datetime" placeholder="End..."/><br>
+          <label class="box-titles" for="datetime">End Date & Time</label><br>
+          <input class="box" id="endTime" type="datetime-local" name="datetime" placeholder="End..."/><br>
+          <label class="box-titles" for="descrpt">Description</label><br>
+          <input class="box" id="description" type="text" name="descrpt" placeholder="Enter Description..."/><br>
+          <label class="box-titles" for="reminder">Set Reminder</label>
+          <input id="reminder" type="checkbox" name="reminder" value="true"/><br>
+          <input class="button" type="submit" value="Add to Calendar">
+      </form>
+    </div>
+    <script src="addLink.js"></script>
+  </body>
+</html>
